@@ -26,10 +26,9 @@ class NewsFeedController: UIViewController {
         // if using a nib you would use this one.. when you do empty and put the colletoinViewCell inside of it...
         //newsFeedView.collectionV.register(nib: UINib, forCellWithReuseIdentifier: <#T##String#>)
         
-        // need to say that it is of type its owncell 
+        // need to say that it is of type its owncell
         newsFeedView.collectionV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "articleCell")
     }
-    
     
 
 }
