@@ -126,12 +126,21 @@ class NYTTopStoriesTests: XCTestCase {
             let title: String
             let abstract: String
             let publishedDate: String
+            let multimedia: [Multimedia]
             
             private enum CodingKeys: String, CodingKey{
                 // the codingKey String is for the coding keys themselves.. not for the type it is taking in..
-                case section,title,abstract
+                case section,title,abstract,multimedia
                 case publishedDate = "published_date"
             }
+        }
+        
+        struct Multimedia: Codable {
+            let url: String
+            let format: String
+            let height: Double
+            let width: Double
+            let caption: String
         }
         
         let expectedTitle = "Trump Administration Freezes Global Entry Enrollment in New York Over Immigration Law"
