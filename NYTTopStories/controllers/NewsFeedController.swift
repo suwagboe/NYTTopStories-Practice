@@ -30,6 +30,18 @@ class NewsFeedController: UIViewController {
         newsFeedView.collectionV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "articleCell")
     }
     
+    private func fetchStories(for section: String = "Technology") {
+        NYTTopStoriesAPIClient.fetchTopStorties(for: section) {
+            (result) in
+            switch result {
+            case .failure(let error):
+                print("error fectching stories: \(error)")
+            case .success(let articles):
+                print("found \(articles.count)")
+            }
+        }
+    }
+    
 
 }
 // 30 percernt of device

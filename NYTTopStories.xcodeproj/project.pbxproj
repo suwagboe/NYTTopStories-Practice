@@ -21,6 +21,7 @@
 		55CD524623EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD524523EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift */; };
 		55CD524923EC868100DF7FE9 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55CD524823EC868100DF7FE9 /* ImageKit */; };
 		55CD524B23EC8BF100DF7FE9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD524A23EC8BF100DF7FE9 /* Config.swift */; };
+		55CD524D23EC8DD000DF7FE9 /* NOTES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD524C23EC8DD000DF7FE9 /* NOTES.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		55CD524223EC851300DF7FE9 /* TopStoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryModel.swift; sourceTree = "<group>"; };
 		55CD524523EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTTopStoriesAPIClient.swift; sourceTree = "<group>"; };
 		55CD524A23EC8BF100DF7FE9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		55CD524C23EC8DD000DF7FE9 /* NOTES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NOTES.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		55CD520623EC6B7200DF7FE9 = {
 			isa = PBXGroup;
 			children = (
+				55CD524C23EC8DD000DF7FE9 /* NOTES.swift */,
 				55CD521123EC6B7200DF7FE9 /* NYTTopStories */,
 				55CD522823EC6B7700DF7FE9 /* NYTTopStoriesTests */,
 				55CD521023EC6B7200DF7FE9 /* Products */,
@@ -271,6 +274,7 @@
 				55CD524323EC851300DF7FE9 /* TopStoryModel.swift in Sources */,
 				55CD521323EC6B7200DF7FE9 /* AppDelegate.swift in Sources */,
 				55CD524623EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift in Sources */,
+				55CD524D23EC8DD000DF7FE9 /* NOTES.swift in Sources */,
 				55CD524023EC714C00DF7FE9 /* NewsFeedView.swift in Sources */,
 				55CD524B23EC8BF100DF7FE9 /* Config.swift in Sources */,
 				55CD523523EC6C3200DF7FE9 /* TopStoriesTabController.swift in Sources */,
