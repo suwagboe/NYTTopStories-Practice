@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,8 @@
 		55CD523E23EC6E8900DF7FE9 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD523D23EC6E8900DF7FE9 /* SettingsController.swift */; };
 		55CD524023EC714C00DF7FE9 /* NewsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD523F23EC714C00DF7FE9 /* NewsFeedView.swift */; };
 		55CD524323EC851300DF7FE9 /* TopStoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD524223EC851300DF7FE9 /* TopStoryModel.swift */; };
+		55CD524623EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD524523EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift */; };
+		55CD524923EC868100DF7FE9 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55CD524823EC868100DF7FE9 /* ImageKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,7 @@
 		55CD523D23EC6E8900DF7FE9 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		55CD523F23EC714C00DF7FE9 /* NewsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedView.swift; sourceTree = "<group>"; };
 		55CD524223EC851300DF7FE9 /* TopStoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoryModel.swift; sourceTree = "<group>"; };
+		55CD524523EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTTopStoriesAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55CD524923EC868100DF7FE9 /* ImageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +91,8 @@
 		55CD521123EC6B7200DF7FE9 /* NYTTopStories */ = {
 			isa = PBXGroup;
 			children = (
-				55CD524123EC84FB00DF7FE9 /* model */,
+				55CD524423EC85E800DF7FE9 /* NetworkServices */,
+				55CD524123EC84FB00DF7FE9 /* models */,
 				55CD523623EC6DE800DF7FE9 /* views */,
 				55CD523723EC6DED00DF7FE9 /* controllers */,
 				55CD523823EC6E0500DF7FE9 /* Supporting Files */,
@@ -135,12 +140,20 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		55CD524123EC84FB00DF7FE9 /* model */ = {
+		55CD524123EC84FB00DF7FE9 /* models */ = {
 			isa = PBXGroup;
 			children = (
 				55CD524223EC851300DF7FE9 /* TopStoryModel.swift */,
 			);
-			path = model;
+			path = models;
+			sourceTree = "<group>";
+		};
+		55CD524423EC85E800DF7FE9 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				55CD524523EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift */,
+			);
+			path = NetworkServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +172,9 @@
 			dependencies = (
 			);
 			name = NYTTopStories;
+			packageProductDependencies = (
+				55CD524823EC868100DF7FE9 /* ImageKit */,
+			);
 			productName = NYTTopStories;
 			productReference = 55CD520F23EC6B7200DF7FE9 /* NYTTopStories.app */;
 			productType = "com.apple.product-type.application";
@@ -209,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 55CD520623EC6B7200DF7FE9;
+			packageReferences = (
+				55CD524723EC868100DF7FE9 /* XCRemoteSwiftPackageReference "ImageKit" */,
+			);
 			productRefGroup = 55CD521023EC6B7200DF7FE9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -248,6 +267,7 @@
 				55CD523C23EC6E6F00DF7FE9 /* SavedArticleController.swift in Sources */,
 				55CD524323EC851300DF7FE9 /* TopStoryModel.swift in Sources */,
 				55CD521323EC6B7200DF7FE9 /* AppDelegate.swift in Sources */,
+				55CD524623EC862000DF7FE9 /* NYTTopStoriesAPIClient.swift in Sources */,
 				55CD524023EC714C00DF7FE9 /* NewsFeedView.swift in Sources */,
 				55CD523523EC6C3200DF7FE9 /* TopStoriesTabController.swift in Sources */,
 				55CD521523EC6B7200DF7FE9 /* SceneDelegate.swift in Sources */,
@@ -509,6 +529,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		55CD524723EC868100DF7FE9 /* XCRemoteSwiftPackageReference "ImageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/ImageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		55CD524823EC868100DF7FE9 /* ImageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55CD524723EC868100DF7FE9 /* XCRemoteSwiftPackageReference "ImageKit" */;
+			productName = ImageKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 55CD520723EC6B7200DF7FE9 /* Project object */;
 }
