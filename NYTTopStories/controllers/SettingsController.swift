@@ -1,5 +1,5 @@
 //
-//  TopStoriesTabController.swift
+//  SettingsController.swift
 //  NYTTopStories
 //
 //  Created by Pursuit on 2/6/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class TopStoriesTabController: UITabBarController {
-    
+class SettingsController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemTeal
+
+        view.backgroundColor = .systemPurple
     }
-    
-    
     
 }
