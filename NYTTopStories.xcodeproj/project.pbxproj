@@ -16,6 +16,7 @@
 		55CD523A23EC6E4E00DF7FE9 /* NewsFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD523923EC6E4E00DF7FE9 /* NewsFeedController.swift */; };
 		55CD523C23EC6E6F00DF7FE9 /* SavedArticleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD523B23EC6E6F00DF7FE9 /* SavedArticleController.swift */; };
 		55CD523E23EC6E8900DF7FE9 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD523D23EC6E8900DF7FE9 /* SettingsController.swift */; };
+		55CD524023EC714C00DF7FE9 /* NewsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD523F23EC714C00DF7FE9 /* NewsFeedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		55CD523923EC6E4E00DF7FE9 /* NewsFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedController.swift; sourceTree = "<group>"; };
 		55CD523B23EC6E6F00DF7FE9 /* SavedArticleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticleController.swift; sourceTree = "<group>"; };
 		55CD523D23EC6E8900DF7FE9 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		55CD523F23EC714C00DF7FE9 /* NewsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		55CD523623EC6DE800DF7FE9 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				55CD523F23EC714C00DF7FE9 /* NewsFeedView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				55CD523A23EC6E4E00DF7FE9 /* NewsFeedController.swift in Sources */,
 				55CD523C23EC6E6F00DF7FE9 /* SavedArticleController.swift in Sources */,
 				55CD521323EC6B7200DF7FE9 /* AppDelegate.swift in Sources */,
+				55CD524023EC714C00DF7FE9 /* NewsFeedView.swift in Sources */,
 				55CD523523EC6C3200DF7FE9 /* TopStoriesTabController.swift in Sources */,
 				55CD521523EC6B7200DF7FE9 /* SceneDelegate.swift in Sources */,
 			);

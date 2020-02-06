@@ -9,11 +9,18 @@
 import UIKit
 
 class NewsFeedController: UIViewController {
+    
+    private let newsFeedView = NewsFeedView()
+    
+    override func loadView() {
+        view = newsFeedView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = .systemBackground // works with dark mode. 
     }
+    
     
 
 }
