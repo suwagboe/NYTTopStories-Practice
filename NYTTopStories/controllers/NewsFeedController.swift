@@ -9,13 +9,19 @@
 import UIKit
 
 class NewsFeedController: UIViewController {
-    
+    //after calling
     private let newsFeedView = NewsFeedView()
     
+    //MARK: you need this in order for the stuff to show in main view controller
     override func loadView() {
         view = newsFeedView
+        //newsFeedView.collectionV.
+        
     }
 
+// making an instance of the cell
+    private let newsFeedCell = NewsCell()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground // works with dark mode.
