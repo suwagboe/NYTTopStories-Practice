@@ -18,9 +18,6 @@ class NewsFeedController: UIViewController {
         //newsFeedView.collectionV.
         
     }
-
-// making an instance of the cell
-    private let newsFeedCell = NewsCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +30,12 @@ class NewsFeedController: UIViewController {
         //newsFeedView.collectionV.register(nib: UINib, forCellWithReuseIdentifier: <#T##String#>)
         
         // need to say that it is of type its owncell
-        newsFeedView.collectionV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "articleCell")
+        // need to register the cell as a custom cell
+        
+    
+        // if you where to use a nib the you use this..
+       
+        newsFeedView.collectionV.register(NewsCell.self, forCellWithReuseIdentifier: "articleCell")
     }
     
     private func fetchStories(for section: String = "Technology") {
@@ -66,6 +68,7 @@ extension NewsFeedController: UICollectionViewDataSource {
         
         // need to assign the cell inside of the viewDidLoad...
         
+        
         return cell
     }
     
@@ -80,7 +83,7 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
         // this is where you return the actual size of the cell.
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width
-        let itemHeight: CGFloat = maxSize.height * 0.30 // make it 30%
+        let itemHeight: CGFloat = maxSize.height * 0.20 // make it 30%
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
