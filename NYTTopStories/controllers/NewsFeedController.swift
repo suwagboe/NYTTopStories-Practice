@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import DataPersistence
 
 class NewsFeedController: UIViewController {
+    
+    
+     // not doing public var dataPersistence =
+    // because we ARE NOT making a new instance there should only be one instance of it inside of the tab bar controller
+    
+    //    public var dp: DataPersistence<Article>! // could also be this way as well 
+    public var dataPersistence: DataPersistence<Article>!
+    // above is ONLY the variable
+    // we are INJECTING  the instance from the tab bar controller which is what we are calling here.
+    
+    
     //after calling
     private let newsFeedView = NewsFeedView()
     
@@ -111,6 +123,7 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
     
     // MARK: this is called here because it is an action and we want when the item is selected to transfer the data ...
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let article = newsArticles[indexPath.row]
         
         
@@ -119,6 +132,10 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
      
         //Todo: after assessment we will be using initilizers as dependency inhection mechanims ...
         articleDVC.seguedArticle = article
+        
+        // this here segues the data persistence instence that we have here to the detail views datapersistence which is called dp...
+        // giving it the same persistence instance that is here... 
+        articleDVC.dp = dataPersistence
         
         // MARK: make sure that you embeed it in a nav controller
         // the below code WILL NOT WORK WITHOUT the newfeedController being embeeded because the navigationController is nil... and its nill because the main view controller does not have navigation controller.. 

@@ -7,7 +7,8 @@
 //
 
 import XCTest
-@testable import NYTTopStories
+@testable import NYTTopStories_Feb__6th
+
 
 class NYTTopStoriesTests: XCTestCase {
     // unit test for our top story model

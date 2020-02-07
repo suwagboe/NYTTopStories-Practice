@@ -13,7 +13,8 @@ enum ImageFormat: String{
     // this makes the code type safe..
     // use raw values to get the
     // whenever we want the image you would just call it
-    case supeJumbo = "supeJumbo" // want this
+    //MARK: Always check the spelling to ensure that everything shows. 
+    case superJumbo = "superJumbo" // want this
     case thumbLarge = "thumbLarge" // want this
     case standardThumbnail = "Standard Thumbnail"
     case normal = "Normal" // need to write it as it is inside of the json file
@@ -32,7 +33,7 @@ enum ImageFormat: String{
                   "format": "thumbLarge"
  */
 
-struct TopStories: Codable {
+struct TopStories: Codable & Equatable {
        let section: String
        let lastUpdated: String
        let results: [Article]
@@ -45,7 +46,7 @@ struct TopStories: Codable {
        }
    }
    
-   struct Article: Codable {
+   struct Article: Codable & Equatable {
        let section: String
        let title: String
        let abstract: String
@@ -60,7 +61,7 @@ struct TopStories: Codable {
    }
 // want to write code in model to easily access the info
    
-   struct Multimedia: Codable {
+   struct Multimedia: Codable & Equatable{
        let url: String
        let format: String // superJumbo, thumbLarge
        let height: Double
