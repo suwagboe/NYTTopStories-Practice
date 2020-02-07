@@ -7,6 +7,7 @@
 //
 
 import UIKit // made a swift file
+import ImageKit
 
 class NewsCell: UICollectionViewCell {
     //image view of the article
@@ -72,7 +73,7 @@ class NewsCell: UICollectionViewCell {
             // want some padding because it shouldn't be touching it.. should have some distance
             ,
             newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            newsImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
+            newsImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.50),
             newsImageView.widthAnchor.constraint(equalTo: newsImageView.heightAnchor)
         ])
     } // the end of image constraints
@@ -90,8 +91,7 @@ class NewsCell: UICollectionViewCell {
             articleTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             // label does not need a height.. intrinct sizing
         ])
-        
-    }
+    } // end of setUp
     
     private func setUpabstractHeadlineConstraints(){
         addSubview(abstractHeadline)
@@ -105,7 +105,34 @@ class NewsCell: UICollectionViewCell {
             abstractHeadline.topAnchor.constraint(equalTo: articleTitle.bottomAnchor, constant: 8)
             // it is positive 8 because we are going down.
         ])
+    } // end of setup of healine
+    
+    
+    public func configureCell(with article: Article) {
+        articleTitle.text = article.title
+        abstractHeadline.text = article.abstract
         
+        // image formats
+        /*
+         superJombo
+         thumbLarge
+         */
+        // want 200 by 200 at most for a thumb image
+        newsImageView.getImage(with: article.getArticleImageURl(for: .thumbLarge)) {
+            [weak self] result in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    // at this point we are here showing that 
+                    self?.newsImageView.image = UIImage(systemName: "exclamationmark-octagon")
+                    print("This is the reason why \(error)")
+                }
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.newsImageView.image = image
+                }
+            }
+        }
     }
     
 }

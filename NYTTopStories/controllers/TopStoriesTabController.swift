@@ -37,7 +37,10 @@ class TopStoriesTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = [newsFC, savedAC, settings]
+        // MARK: this is where you embeed the controller
+        viewControllers = [UINavigationController(rootViewController: newsFC)
+            , UINavigationController(rootViewController: savedAC)
+            , UINavigationController(rootViewController: settings)]
     }
     
     

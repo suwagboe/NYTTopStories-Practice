@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		55C20C3223EDB6E100C9E6E1 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C20C3123EDB6E100C9E6E1 /* NewsCell.swift */; };
+		55C20C3423EDCB6800C9E6E1 /* AtrticleDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C20C3323EDCB6800C9E6E1 /* AtrticleDetailController.swift */; };
 		55CD521323EC6B7200DF7FE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD521223EC6B7200DF7FE9 /* AppDelegate.swift */; };
 		55CD521523EC6B7200DF7FE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CD521423EC6B7200DF7FE9 /* SceneDelegate.swift */; };
 		55CD521C23EC6B7700DF7FE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55CD521B23EC6B7700DF7FE9 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		55C20C3123EDB6E100C9E6E1 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		55C20C3323EDCB6800C9E6E1 /* AtrticleDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtrticleDetailController.swift; sourceTree = "<group>"; };
 		55CD520F23EC6B7200DF7FE9 /* NYTTopStories Feb. 6th.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NYTTopStories Feb. 6th.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CD521223EC6B7200DF7FE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55CD521423EC6B7200DF7FE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				55CD523923EC6E4E00DF7FE9 /* NewsFeedController.swift */,
 				55CD523B23EC6E6F00DF7FE9 /* SavedArticleController.swift */,
 				55CD523D23EC6E8900DF7FE9 /* SettingsController.swift */,
+				55C20C3323EDCB6800C9E6E1 /* AtrticleDetailController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C20C3423EDCB6800C9E6E1 /* AtrticleDetailController.swift in Sources */,
 				55CD523E23EC6E8900DF7FE9 /* SettingsController.swift in Sources */,
 				55CD523A23EC6E4E00DF7FE9 /* NewsFeedController.swift in Sources */,
 				55CD523C23EC6E6F00DF7FE9 /* SavedArticleController.swift in Sources */,
