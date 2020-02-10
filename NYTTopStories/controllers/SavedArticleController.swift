@@ -144,8 +144,37 @@ extension SavedArticleController: SavedArticleCellDelegate{
         
         // need actions to appear for when the user clicks it
         
+        // create an action sheet
+        // cancel action
+        // delete action
+        // post MVP shareAction...
         
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        let cancelAction = UIAlertAction(title: "cancel", style: .cancel)
+        
+        let deleteAction = UIAlertAction(title:"delete", style: .destructive) {
+            alertAction in
+            // ToDO: write a delelte helper function
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        
+        present(alertController, animated: true)
+        
+    }
+    
+    private func deleteArticle(_ article: Article){
+        guard let index = savedArticles.firstIndex(of: article) else {
+            return
+        }
+        do{
+            try dp.deleteItem(at: index)
+            // the above code deletes from documents directory. 
+        }catch{
+            print("error deleting article")
+        }
     }
 }
 
