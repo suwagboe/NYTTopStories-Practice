@@ -50,9 +50,21 @@ class SavedArticlesCell: UICollectionViewCell {
         label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.text =  "Article Title that is being should is from the article that you clicked"
         label.numberOfLines = 0
+       
+        
         return label
     }()
     
+    public lazy var newsImageView: UIImageView = {
+       let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.image = UIImage(systemName: "photo")
+        iv.clipsToBounds = true
+        iv.alpha = 0
+        return iv
+    }()
+    
+    private var isShowingImage = false  // this is a state varable to keep track
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -71,16 +83,54 @@ class SavedArticlesCell: UICollectionViewCell {
         // label covers the cell so on the label need to set is user interaction enabled.
         articleTitle.isUserInteractionEnabled = true
                      addGestureRecognizer(longPressGesture)// this the view that we are adding the gesture too... adding it to the ENTIRE view
+        setUpImageViewConstraints()
       
     }
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer){
         print("outside gesture")
+        guard let currentArticle = currentArticle else { return }
+
         if gesture.state == .began || gesture.state == .changed {
             print("long pressed")
             return
         }
+        isShowingImage.toggle() // true -> false
         
         
+        newsImageView.getImage(with: currentArticle.getArticleImageURl(for: .normal)) { [weak self]
+            (result) in
+            
+            switch result{
+            case .failure:
+                break
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self?.newsImageView.image = image
+                    self?.animate() // make sure this is called in order to do the below function 
+                }
+            }
+         }
+    }
+    
+    private func animate() {
+        let duration: Double = 1.0
+        if isShowingImage {
+            // self is the sell
+            UIView.transition(with: self , duration: duration, options: [.transitionFlipFromRight], animations: {
+                // this closure is not a network request does not need weak self no network call
+                self.newsImageView.alpha = 1.0
+                self.articleTitle.alpha = 0.0
+                
+            }, completion: nil )
+        } else {
+            UIView.transition(with: self , duration: duration, options: [.transitionFlipFromRight], animations: {
+                // this closure is not a network request does not need weak self no network call
+                self.newsImageView.alpha = 0.0
+                self.articleTitle.alpha = 1.0
+                
+            }, completion: nil )
+            
+        }
     }
     
     @objc private func moreButtonPressed(_ sender: UIButton){
@@ -119,9 +169,21 @@ class SavedArticlesCell: UICollectionViewCell {
             articleTitle.trailingAnchor.constraint(equalTo: trailingAnchor),
             articleTitle.topAnchor.constraint(equalTo: moreButton.bottomAnchor),
             articleTitle.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    private func setUpImageViewConstraints(){
+        addSubview(newsImageView)
+        
+        newsImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            newsImageView.topAnchor.constraint(equalTo: moreButton.bottomAnchor),
+            newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            newsImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         
         ])
-        
     }
 
     
