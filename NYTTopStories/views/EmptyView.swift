@@ -27,7 +27,14 @@ class EmptyView: UIView {
         label.textAlignment = .center
            return label
        }()
-
+    
+    /*
+     this is no longer getting called it is no longer needed. 
+    override init(frame: CGRect) {
+           super.init(frame: UIScreen.main.bounds)
+           commonInit()
+       }
+ */
     
      init(title: String, message: String) {
         // why do we need this one?

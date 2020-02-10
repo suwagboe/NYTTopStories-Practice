@@ -13,6 +13,8 @@ class SavedArticleController: UIViewController {
     
     private let instanceOfSavedArticleV = SavedArticleView()
     
+    //private let instanceOfArt
+    
     // STILL the same instance
     public var dp: DataPersistence<Article>!
     
@@ -29,7 +31,7 @@ class SavedArticleController: UIViewController {
     
     private var savedArticles = [Article](){
         didSet{
-            print("there are \(savedArticles.count) articles.")
+            //print("there are \(savedArticles.count) articles.")
             instanceOfSavedArticleV.collectionV.reloadData()
             if savedArticles.isEmpty {
                 // made the custom init in order to all it inside of the viewcontroller and give the variables inits
@@ -52,7 +54,7 @@ class SavedArticleController: UIViewController {
         instanceOfSavedArticleV.collectionV.delegate = self
         
        //register the cell
-        instanceOfSavedArticleV.collectionV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "savedArticleCell")
+        instanceOfSavedArticleV.collectionV.register(SavedArticlesCell.self, forCellWithReuseIdentifier: "savedArticleCell")
     }
     
     override func loadView() {
