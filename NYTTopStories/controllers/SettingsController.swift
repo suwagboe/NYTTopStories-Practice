@@ -8,12 +8,16 @@
 
 import UIKit
 
+struct UserKey {
+    static let sectionName = "News Section"
+}
+
 class SettingsController: UIViewController {
     
     private let Settingsv = SettingView()
     
     //data for picker view
-    private let sections = ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Home", "Insider", "Magazine", "Movies", "NYRegion", "Obituaries", "Opinion", "Politics", "RealeEstate", "Science", "Sports", "SundayReview", "Technology", "Theater", "T-Magazine", "Travel", "Upshot", "US", "World"]// ascending order
+    private let sections = ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "NYRegion", "Obituaries", "Opinion", "Politics", "RealeEstate", "Science", "Sports", "SundayReview", "Technology", "Theater", "T-Magazine", "Travel", "Upshot", "US", "World"]// ascending order
     override func loadView() {
         view = Settingsv
     }
@@ -30,6 +34,7 @@ class SettingsController: UIViewController {
         Settingsv.pickerViewSelected.delegate = self
         
     }
+    
     
 }
 
@@ -50,5 +55,16 @@ extension SettingsController: UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return sections[row] // accessing each individual string in the sectoins array..
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // store the current selected section in user defaults
+        
+        print("section selected is: \(sections[row])")
+        
+        let sectionName = sections[row]
+        
+        // below saves the section selected
+        UserDefaults.standard.set(sectionName, forKey: UserKey.sectionName)
     }
 }

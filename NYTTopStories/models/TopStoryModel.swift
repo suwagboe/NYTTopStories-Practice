@@ -51,7 +51,7 @@ struct TopStories: Codable & Equatable {
        let title: String
        let abstract: String
        let publishedDate: String
-       let multimedia: [Multimedia]
+       let multimedia: [Multimedia]?
        
        private enum CodingKeys: String, CodingKey{
            // the codingKey String is for the coding keys themselves.. not for the type it is taking in..
@@ -78,6 +78,8 @@ extension Article { // article.getArticleImageURL(.superJumbo)
     func getArticleImageURl(for imageFormat: ImageFormat) -> String {
         // we are in a article and have access to multimedia which is the array of images
         // now we are saying filer based on what is being looked for
+        guard let multimedia = multimedia else { return ""}
+        // MARK: should guard against it being nil instead of making everything optional 
         let results = multimedia.filter {$0.format == imageFormat.rawValue}
         // so it says is the fomart we are looking at the one we are asking for.
         

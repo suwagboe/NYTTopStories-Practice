@@ -34,6 +34,13 @@ class NewsFeedController: UIViewController {
         }
     }
     
+    
+    private var sectionName = "Technology" {
+        didSet{
+            // todo: refactor name...
+        }
+    }
+    
     //MARK: you need this in order for the stuff to show in main view controller
     override func loadView() {
         view = newsFeedView
@@ -59,24 +66,49 @@ class NewsFeedController: UIViewController {
        
         newsFeedView.collectionV.register(NewsCell.self, forCellWithReuseIdentifier: "articleCell")
         
+        // fetchStories() removing here because it is needed whenever we appear on screen not ONLY when the app loads..
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         fetchStories()
     }
     
     private func fetchStories(for section: String = "Technology") {
-        NYTTopStoriesAPIClient.fetchTopStorties(for: section) { [weak self]
-            (result) in
-            switch result {
-            case .failure(let error):
-                print("error fectching stories: \(error)")
-            case .success(let articles):
-                // once we do this you need to do the [weak self]
-                // the strong reference cycle needs to broken with [weak self]
-                self?.newsArticles = articles
-                //print("found \(articles.count)") do this to double check
-            }
+        //will implement the user default because this is where the section name is needed.
+        
+        // REMEMEBER to type cast it as a string
+        if let sectionName = UserDefaults.standard.object(forKey: UserKey.sectionName) as? String {
+            if sectionName != self.sectionName { // if history == history then you wont go in here this is when its NOT the same
+                // we are looking at a new section
+                // verifying the section name is different from the name that was there originally then leave it.
+                // make a new query...
+                // prevents unnecessary calls to the API.
+                queryAPI(for: sectionName)
+            } // this ends where the
+            // need to capture the value to later check if the values are the same
+            self.sectionName = sectionName
+        }else { 
+                // if there is nothing in userdefaults then you want to get it here
+            // this is for what we already have.
+            queryAPI(for: sectionName)
         }
     }
     
+    private func queryAPI(for section: String) {
+        NYTTopStoriesAPIClient.fetchTopStorties(for: section) { [weak self]
+                   (result) in
+                   switch result {
+                   case .failure(let error):
+                       print("error fectching stories: \(error)")
+                   case .success(let articles):
+                       // once we do this you need to do the [weak self]
+                       // the strong reference cycle needs to broken with [weak self]
+                       self?.newsArticles = articles
+                       //print("found \(articles.count)") do this to double check
+                   }
+               }
+    }
 
 }
 // 30 percernt of device
