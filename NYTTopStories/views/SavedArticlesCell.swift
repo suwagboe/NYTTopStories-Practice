@@ -12,8 +12,9 @@ import UIKit
 protocol SavedArticleCellDelegate: AnyObject {
     // (_ savedArticleCell: SavedArticlesCell .. this is the object that it is observing.. )
     func didSelectMoreButton(_ savedArticleCell: SavedArticlesCell, article: Article)
+    
+    // long press gesture
 }
-
 class SavedArticlesCell: UICollectionViewCell {
     //MARK: set2: custom protcol
     // this is the instance of the protcol...
@@ -27,7 +28,13 @@ class SavedArticlesCell: UICollectionViewCell {
     //article title
     // news image
     
-    
+    // MARK: longPressGesture
+    // MAKE SURE THAT YOU MAKE IT LAZY,.. THE TARGET WILL NOT BE ADDED UNTIL IT IS INITIALIZED... AND SO THW OBJECT DOESNT GET REDERED/ INITIALIZED SO THE TARGET IS NIL.
+    private lazy var longPressGesture: UILongPressGestureRecognizer = {
+        let gesture  = UILongPressGestureRecognizer()
+        gesture.addTarget(self, action: #selector(didLongPress(_:)))
+        return gesture
+    }()
     
     public lazy var moreButton: UIButton = {
       let button = UIButton()
@@ -58,8 +65,21 @@ class SavedArticlesCell: UICollectionViewCell {
     }
     
     private func commonInit() {
+       
         setUpButtonConstraints()
         setUpArticleButtonConstraints()
+        // label covers the cell so on the label need to set is user interaction enabled.
+        articleTitle.isUserInteractionEnabled = true
+                     addGestureRecognizer(longPressGesture)// this the view that we are adding the gesture too... adding it to the ENTIRE view
+      
+    }
+    @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer){
+        print("outside gesture")
+        if gesture.state == .began || gesture.state == .changed {
+            print("long pressed")
+            return
+        }
+        
         
     }
     
@@ -89,6 +109,7 @@ class SavedArticlesCell: UICollectionViewCell {
     }
     
     private func setUpArticleButtonConstraints(){
+        
         addSubview(articleTitle)
         
         articleTitle.translatesAutoresizingMaskIntoConstraints = false
