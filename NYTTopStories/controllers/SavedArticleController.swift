@@ -115,8 +115,23 @@ extension SavedArticleController: UICollectionViewDelegateFlowLayout{
         // these are the defaults. for the spacing of the collection view around the view...
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let article = savedArticles[indexPath.row]
+    
+        // from the item selected we will segue programmatically
+        let detailVC = AtrticleDetailController()
+        // use dependency injection
+        // what does it need. the article ... persistence
+        // need the data persistence because its coming from a detail controller.. just like in the main controlller it has the same affect.
+            // need to pass the data persistence because you may not have opended the news feed controller yet so the detail controller may not have the detail and dp.. so we need to pass it in here if we start from savedArticle controller
+        
+        detailVC.seguedArticle = article
+        detailVC.dp = self.dp
+        
+        navigationController?.pushViewController(detailVC, animated: true)
 }
-
+}
 
 // this is where we CONFORMING to the delegate of the DataPersisenceDelegate
 // but the delagate is ALREADY set inside of the tab bar controller. 
