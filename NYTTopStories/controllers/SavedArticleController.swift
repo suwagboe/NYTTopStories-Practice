@@ -130,6 +130,8 @@ extension SavedArticleController: DataPersistenceDelegate {
     
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
         print("item was deleted")
+        fetchSavedArticles() // this will reload the items after the items get deleted
+        
     }
 }
 
@@ -156,6 +158,8 @@ extension SavedArticleController: SavedArticleCellDelegate{
         let deleteAction = UIAlertAction(title:"delete", style: .destructive) {
             alertAction in
             // ToDO: write a delelte helper function
+            self.deleteArticle(article) // to remove the article
+            // the delegate method is getting called
         }
         
         alertController.addAction(cancelAction)
@@ -171,7 +175,7 @@ extension SavedArticleController: SavedArticleCellDelegate{
         }
         do{
             try dp.deleteItem(at: index)
-            // the above code deletes from documents directory. 
+            // the above code deletes from documents directory.
         }catch{
             print("error deleting article")
         }
