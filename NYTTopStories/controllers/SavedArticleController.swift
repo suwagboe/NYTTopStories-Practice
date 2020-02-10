@@ -78,7 +78,14 @@ extension SavedArticleController: UICollectionViewDataSource{
         return savedArticles.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "savedArticleCell", for: indexPath)
+       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "savedArticleCell", for: indexPath) as? SavedArticlesCell else {
+            fatalError("coudlnt deqeue toSavedArticlesCell ")
+        }
+        
+        let theArticleThatWasSaved = savedArticles[indexPath.row] // to get the one that was selected
+        
+        cell.configureCell(for: theArticleThatWasSaved)
+        
         cell.backgroundColor = .systemBackground
         
         return cell

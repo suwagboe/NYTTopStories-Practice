@@ -10,9 +10,14 @@ import UIKit
 
 class SavedArticlesCell: UICollectionViewCell {
     
+    // to keep track of the current cells article
+    // instead we are tell the cell itself to keep track of its article
+    private var currentArticle: Article!
     // more button
     //article title
     // news image
+    
+    
     
     public lazy var moreButton: UIButton = {
       let button = UIButton()
@@ -24,8 +29,8 @@ class SavedArticlesCell: UICollectionViewCell {
     public lazy var articleTitle: UILabel = {
        let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title2)
-        label.text =  "Article Title"
-        
+        label.text =  "Article Title that is being should is from the article that you clicked"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -46,6 +51,9 @@ class SavedArticlesCell: UICollectionViewCell {
         
     }
     
+    @objc private func moreButtonPressed(_ sender: UIButton){
+        print("button was pressed for article \(currentArticle.title)")
+    }
     
     private func setUpButtonConstraints(){
         addSubview(moreButton)
@@ -76,6 +84,10 @@ class SavedArticlesCell: UICollectionViewCell {
         
         ])
         
+    }
+
+    public func configureCell(for savedArticle: Article){
+        articleTitle.text = savedArticle.title
     }
 
 }
