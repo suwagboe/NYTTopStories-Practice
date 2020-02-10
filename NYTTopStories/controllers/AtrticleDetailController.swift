@@ -74,6 +74,7 @@ class AtrticleDetailController: UIViewController {
         do {
             // saved to  the documents directory
             try dp.createItem(article)
+            // alert that the time was saved
             
         }catch {
             print("error saving article: \(error)")

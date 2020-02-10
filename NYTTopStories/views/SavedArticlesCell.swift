@@ -13,7 +13,7 @@ protocol SavedArticleCellDelegate: AnyObject {
     // (_ savedArticleCell: SavedArticlesCell .. this is the object that it is observing.. )
     func didSelectMoreButton(_ savedArticleCell: SavedArticlesCell, article: Article)
     
-    // long press gesture
+    // setting the object.
 }
 class SavedArticlesCell: UICollectionViewCell {
     //MARK: set2: custom protcol

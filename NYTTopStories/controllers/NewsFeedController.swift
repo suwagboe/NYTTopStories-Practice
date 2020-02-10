@@ -91,14 +91,17 @@ class NewsFeedController: UIViewController {
                 self.sectionName = sectionName
                 // this ends where the
                 // need to capture the value to later check if the values are the same
+                navigationItem.title = sectionName
             }
             else {
                 queryAPI(for: sectionName)
+                navigationItem.title = sectionName
             }
         }else {
                 // if there is nothing in userdefaults then you want to get it here
             // this is for what we already have.
             queryAPI(for: sectionName)
+            navigationItem.title = sectionName
         }
     }
     
@@ -183,7 +186,7 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // it inheretes from scroll view....  
+        // it inheretes from scroll view....
         // the delegate object has the scroll object on it
        if newsFeedView.searchBar.isFirstResponder {
         // when we scroll it dismisses the keyboard

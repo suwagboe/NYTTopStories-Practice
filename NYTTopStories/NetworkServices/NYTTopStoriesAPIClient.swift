@@ -10,6 +10,7 @@ import Foundation
 import NetworkHelper
 
 struct NYTTopStoriesAPIClient {
+    // the result is the Article... which is an array of Articles... which is [Article].. but the inside is a TopStories... 
     static func fetchTopStorties(for section: String, completion: @escaping (Result<[Article], AppError>)-> ()) {
         let endpointURL = "https://api.nytimes.com/svc/topstories/v2/\(section).json?api-key=\(Config.apiKey)"
         
@@ -27,7 +28,7 @@ struct NYTTopStoriesAPIClient {
                 completion(.failure(.decodingError(appError)))
             case .success(let data):
                 do{
-                    // remember to ALWAYS go from the top level and then go deeper inside of the model
+                    // MARK: remember to ALWAYS go from the top level and then go deeper inside of the model
                     let stories = try JSONDecoder().decode(TopStories.self, from: data)
                     completion(.success(stories.results))
                 }catch{
