@@ -8,11 +8,21 @@
 
 import UIKit
 
+//MARK: set1: custom protcol
+protocol SavedArticleCellDelegate: AnyObject {
+    // (_ savedArticleCell: SavedArticlesCell .. this is the object that it is observing.. )
+    func didSelectMoreButton(_ savedArticleCell: SavedArticlesCell, article: Article)
+}
+
 class SavedArticlesCell: UICollectionViewCell {
+    //MARK: set2: custom protcol
+    // this is the instance of the protcol...
+    weak var delegate: SavedArticleCellDelegate?
+    
     
     // to keep track of the current cells article
     // instead we are tell the cell itself to keep track of its article
-    private var currentArticle: Article!
+    private var currentArticle: Article! // MARK: what is this
     // more button
     //article title
     // news image
@@ -22,7 +32,9 @@ class SavedArticlesCell: UICollectionViewCell {
     public lazy var moreButton: UIButton = {
       let button = UIButton()
         button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        
+        // need to set up the action for the button so the target needs to be added inside of the button properties
+        button.addTarget(self, action: #selector(moreButtonPressed(_:)), for: .touchUpInside)
+        //because we are using custom delegation so we are setting it up here
         return button
     }()
     
@@ -53,6 +65,11 @@ class SavedArticlesCell: UICollectionViewCell {
     
     @objc private func moreButtonPressed(_ sender: UIButton){
         print("button was pressed for article \(currentArticle.title)")
+        //MARK: set3: custom protcol
+        // the action
+        
+        delegate?.didSelectMoreButton(self, article: currentArticle)
+        // you set the current title in the configure cell
     }
     
     private func setUpButtonConstraints(){
@@ -86,8 +103,12 @@ class SavedArticlesCell: UICollectionViewCell {
         
     }
 
+    
     public func configureCell(for savedArticle: Article){
+        currentArticle = savedArticle // associating the cell with its article
+        // need to set the article or it will be nil and it will crash
         articleTitle.text = savedArticle.title
+        
     }
 
 }

@@ -82,12 +82,13 @@ extension SavedArticleController: UICollectionViewDataSource{
             fatalError("coudlnt deqeue toSavedArticlesCell ")
         }
         
+        
         let theArticleThatWasSaved = savedArticles[indexPath.row] // to get the one that was selected
         
         cell.configureCell(for: theArticleThatWasSaved)
         
         cell.backgroundColor = .systemBackground
-        
+        cell.delegate = self // need to conform to the delegate below
         return cell
     }
     
@@ -129,6 +130,22 @@ extension SavedArticleController: DataPersistenceDelegate {
     
     func didDeleteItem<T>(_ persistenceHelper: DataPersistence<T>, item: T) where T : Decodable, T : Encodable, T : Equatable {
         print("item was deleted")
+    }
+}
+
+
+// step 2: registering as the delegate object.
+extension SavedArticleController: SavedArticleCellDelegate{
+    
+    func didSelectMoreButton(_ savedArticleCell: SavedArticlesCell, article: Article) {
+        // when you take it the parameter of the savedArticleCell it is there in case it needs to be used but its doesnt have to be.. 
+        
+        print("didSelectMoreButton: \(article.title)")
+        
+        // need actions to appear for when the user clicks it
+        
+        
+        
     }
 }
 
