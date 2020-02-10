@@ -30,6 +30,13 @@ class SavedArticleController: UIViewController {
     private var savedArticles = [Article](){
         didSet{
             print("there are \(savedArticles.count) articles.")
+            instanceOfSavedArticleV.collectionV.reloadData()
+            if savedArticles.isEmpty {
+                // made the custom init in order to all it inside of the viewcontroller and give the variables inits
+                instanceOfSavedArticleV.collectionV.backgroundView = EmptyView(title: "Saved Articles", message: "There are currently no saved articles please browse by taping on the News icon")
+            } else {
+                instanceOfSavedArticleV.collectionV.backgroundView = nil
+            }
         }
     }
 
