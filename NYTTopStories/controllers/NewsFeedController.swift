@@ -67,6 +67,9 @@ class NewsFeedController: UIViewController {
         newsFeedView.collectionV.register(NewsCell.self, forCellWithReuseIdentifier: "articleCell")
         
         // fetchStories() removing here because it is needed whenever we appear on screen not ONLY when the app loads..
+        
+        //setup  search bar
+        newsFeedView.searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,10 +88,14 @@ class NewsFeedController: UIViewController {
                 // make a new query...
                 // prevents unnecessary calls to the API.
                 queryAPI(for: sectionName)
-            } // this ends where the
-            // need to capture the value to later check if the values are the same
-            self.sectionName = sectionName
-        }else { 
+                self.sectionName = sectionName
+                // this ends where the
+                // need to capture the value to later check if the values are the same
+            }
+            else {
+                queryAPI(for: sectionName)
+            }
+        }else {
                 // if there is nothing in userdefaults then you want to get it here
             // this is for what we already have.
             queryAPI(for: sectionName)
@@ -174,4 +181,37 @@ extension NewsFeedController: UICollectionViewDelegateFlowLayout {
         navigationController?.pushViewController(articleDVC, animated: true)
     }
     
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // it inheretes from scroll view....  
+        // the delegate object has the scroll object on it
+       if newsFeedView.searchBar.isFirstResponder {
+        // when we scroll it dismisses the keyboard
+            newsFeedView.searchBar.resignFirstResponder()
+        }
+    }
+}
+
+extension NewsFeedController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        //searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // doesnt hit the api like the other one
+        // and will change as the text is entered.
+        
+        print(searchText)
+        
+        guard !searchText.isEmpty else {
+            fetchStories()
+            // if it is empty then reload all of the articles.
+            return
+        }
+        
+        // filter articles based on search text...
+        
+        newsArticles = newsArticles.filter { $0.title.lowercased().contains(searchText.lowercased()) } // if it is == the it will look for EXACT matches
+    }
 }
