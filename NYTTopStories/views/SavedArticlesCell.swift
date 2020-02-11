@@ -10,6 +10,7 @@ import UIKit
 
 //MARK: set1: custom protcol
 protocol SavedArticleCellDelegate: AnyObject {
+    // we made this delegate because we want the user to have the option for more things which include..... saving and deleting
     // (_ savedArticleCell: SavedArticlesCell .. this is the object that it is observing.. )
     func didSelectMoreButton(_ savedArticleCell: SavedArticlesCell, article: Article)
     
@@ -23,6 +24,9 @@ class SavedArticlesCell: UICollectionViewCell {
     
     // to keep track of the current cells article
     // instead we are tell the cell itself to keep track of its article
+    // this is to hold the inputed variable
+    
+    // this is an instance of an EMPTY article that can be used later throughout the class. for whatever and since the delegate take in an article this is what we will use as a placeholder for the parameter
     private var currentArticle: Article! // MARK: what is this
     // more button
     //article title
@@ -86,6 +90,18 @@ class SavedArticlesCell: UICollectionViewCell {
         setUpImageViewConstraints()
       
     }
+    
+    @objc private func moreButtonPressed(_ sender: UIButton){
+        print("button was pressed for article \(currentArticle.title)")
+        //MARK: set3: custom protcol
+        // setting the action that
+        
+        
+        //this is only storing the article from above so it can be used later in any view controller listening to the delegate...
+        delegate?.didSelectMoreButton(self, article: currentArticle)
+        // you set the current title in the configure cell
+    }
+    
     @objc private func didLongPress(_ gesture: UILongPressGestureRecognizer){
         print("outside gesture")
         guard let currentArticle = currentArticle else { return }
@@ -133,15 +149,7 @@ class SavedArticlesCell: UICollectionViewCell {
         }
     }
     
-    @objc private func moreButtonPressed(_ sender: UIButton){
-        print("button was pressed for article \(currentArticle.title)")
-        //MARK: set3: custom protcol
-        // the action
-        
-        delegate?.didSelectMoreButton(self, article: currentArticle)
-        // you set the current title in the configure cell
-    }
-    
+
     private func setUpButtonConstraints(){
         addSubview(moreButton)
         

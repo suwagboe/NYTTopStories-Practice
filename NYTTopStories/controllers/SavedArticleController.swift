@@ -16,6 +16,8 @@ class SavedArticleController: UIViewController {
     //private let instanceOfArt
     
     // STILL the same instance
+    // MARK: make sure to call data persistence delegate or else it will make everything optional..
+    //also dont forget to call the methods inside of it also make sure its : and NOT  = because that it wrong.. it is only an instance of the one inside of the tab controller.
     public var dp: DataPersistence<Article>!
     
     //TODO:
@@ -78,6 +80,8 @@ extension SavedArticleController: UICollectionViewDataSource{
         return savedArticles.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        // downcast as the actual thing and not the variable you used in the class. 
        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "savedArticleCell", for: indexPath) as? SavedArticlesCell else {
             fatalError("coudlnt deqeue toSavedArticlesCell ")
         }
@@ -88,6 +92,9 @@ extension SavedArticleController: UICollectionViewDataSource{
         cell.configureCell(for: theArticleThatWasSaved)
         
         cell.backgroundColor = .systemBackground
+        
+        // this delegate allows for communication between view controllers so you can persist it but the best case for INSTANT transfer of data between view controllers is to use a delegate that will get implemented.
+         // this is where the delegate should listen because the delegate was made inside of the favsCellView so because of that you should implement the delegate on each cell as they are created not on only on the ones that are selected.
         cell.delegate = self // need to conform to the delegate below
         return cell
     }
@@ -155,7 +162,13 @@ extension SavedArticleController: DataPersistenceDelegate {
 extension SavedArticleController: SavedArticleCellDelegate{
     
     func didSelectMoreButton(_ savedArticleCell: SavedArticlesCell, article: Article) {
-        // when you take it the parameter of the savedArticleCell it is there in case it needs to be used but its doesnt have to be.. 
+        // MARK: inside of the delegate I am declaring what the methods/ actions
+        //are because delegates are actions...
+        
+        // this delegate here now has the properties that I implemented for the cell... which means that button as that properties that I implemented for the cell... 
+        
+        // when you take it the parameter of the savedArticleCell it is there in case it needs to be used but its doesnt have to be..
+        // need to give it the addtional parameter of the article so that way it know what it will be deleting
         
         print("didSelectMoreButton: \(article.title)")
         
@@ -172,7 +185,7 @@ extension SavedArticleController: SavedArticleCellDelegate{
         
         let deleteAction = UIAlertAction(title:"delete", style: .destructive) {
             alertAction in
-            // ToDO: write a delelte helper function
+            //write a delelte helper function in order to actually delete something...
             self.deleteArticle(article) // to remove the article
             // the delegate method is getting called
         }
@@ -184,11 +197,15 @@ extension SavedArticleController: SavedArticleCellDelegate{
         
     }
     
-    private func deleteArticle(_ article: Article){
+    // it has too take in parameters in order to know what it is that it is deleting or making the action of...
+    private func deleteArticle(_ article: Article){//
+        
+        // because we have a parameter of a article that will need to be put in the index will be the index of whatever article that is put into the function...
         guard let index = savedArticles.firstIndex(of: article) else {
             return
         }
         do{
+            // it is dp.delete because it is a method inside of the data persistence
             try dp.deleteItem(at: index)
             // the above code deletes from documents directory.
         }catch{
